@@ -1,5 +1,6 @@
 # NotesFromGoodreads
-Browser extention that reads and converts highlights and notes from a Goodreads notes page into markdown and copies them to the clipboard
+Browser extention that reads and converts highlights and notes from a Goodreads notes page into markdown and copies them to the clipboard.
+Keep in mind that the greedy a-holes at Amazon and the the publishers limit the text that can go to the the highlights, so you won't be able to copy large highlighted sections, this isn't an extension limitation.
 
 Super simple extension, only works on pages under https://www.goodreads.com/notes/*, see manifest
 
