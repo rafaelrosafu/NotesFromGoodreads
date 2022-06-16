@@ -80,16 +80,12 @@ function receiveParsedNotes(message) {
 browser.runtime.onMessage.addListener(receiveParsedNotes);
 
 // Enables and disables button based on the active tab
-async function handleActivated(activeInfo) {
-    debug("Tab " + activeInfo.tabId +
-        " was activated");
+async function enableDisableButton(tabId) {
     try {
-        let tabInfo = await browser.tabs.get(activeInfo.tabId);
+        let tabInfo = await browser.tabs.get(tabId);
         if (tabInfo.url.startsWith(target_url)) {
-            debug(tabInfo);
             browser.browserAction.enable();
         } else {
-            debug("URL doesn't match");
             browser.browserAction.disable();
         }
     } catch (error) {
@@ -97,4 +93,12 @@ async function handleActivated(activeInfo) {
     }
 }
 
+function handleActivated(activeInfo) {
+    enableDisableButton(activeInfo.tabId);
+}
 browser.tabs.onActivated.addListener(handleActivated);
+
+function handleUpdated(tabId, changeInfo, tabInfo) {
+    enableDisableButton(tabId);
+}
+browser.tabs.onUpdated.addListener(handleUpdated);
